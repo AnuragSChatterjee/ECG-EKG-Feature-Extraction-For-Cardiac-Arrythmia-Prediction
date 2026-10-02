@@ -1,0 +1,7 @@
+AVNRT:  
+1. Often hidden inside the QRS complex, or visible as a "pseudo R'" in lead V1. 
+2. Short RP interval. Retrograde P waves are buried in or immediately follow the QRS complex. 
+
+AVRT:
+1. Visible after the QRS complex (retrograde P-waves) because the atria are activated after the ventricles.
+2. Long RP interval. Discrete retrograde P waves are visible in the ST segment.         

@@ -1,0 +1,74 @@
+--------------------------------------------------------------------------------------------------------
+ML_FEATURES = [
+    # Rhythm / HRV (unchanged)
+    'RR_mean_ms' (OK), 'RR_std_ms' (OK), 'RMSSD_ms'(OK),
+    'HR_mean_bpm', 'HR_std_bpm' (OK), 'pNN50_pct' (OK),    
+
+    # QRS Morphology (unchanged)
+    'QRS_amplitude_mean', 'QRS_duration_ms_mean' (OK),
+    'beat_skewness_mean' (OK), 'beat_kurtosis_mean' (OK),
+    'RS_interval_ms_mean', 
+
+    # Spectral (unchanged) 
+    'QRS_band_power', 'P_wave_band_power',
+    'peak_frequency_Hz', 'spectral_flatness',  
+
+    # Poincaré (unchanged)
+    'SD1_ms' (OK), 'SD2_ms'(OK), 'SD1_SD2_ratio' (OK),   
+ 
+    # Interval (unchanged)  
+    'PR_interval_mean_ms', 'QT_interval_mean_ms',  
+    'P_wave_presence_ratio' (OK), 'P_duration_mean_ms', 
+
+    # R-peak (unchanged)  
+    'R_peak_amplitude_mean', 'R_peak_count' (OK), 
+
+    # *** NEW — AVNRT vs AVRT specific features *** 
+    'RP_interval_mean_ms' (OK),      # PRIMARY AND THIS IS THE MOST IMPORTANT FEATURE ACTUALLY: <70-90ms = AVNRT; >100ms = AVRT
+    'VA_interval_mean_ms',      # Same clinical meaning as RP interval
+    'RP_PR_ratio' (OK),              # RP/PR ratio — <1.0 = short RP (AVNRT); >1.0 = long RP (AVRT)
+    'ST_slope_mean' (OK),            # ST depression predictor of AVRT (Paper 5)
+    'P_wave_absent_flag' (OK),       # P buried/absent = AVNRT; visible retrograde P = AVRT
+]
+  
+  
+--------------------------------------------------------------------------------------------------------
+
+ML_FEATURES = [           
+    # Rhythm / HRV
+    'RR_mean_ms', 'RR_std_ms', 'RMSSD_ms',
+    'HR_mean_bpm', 'HR_std_bpm', 'pNN50_pct', 
+    # QRS Morphology
+    'QRS_amplitude_mean', 'QRS_duration_ms_mean',
+    'beat_skewness_mean', 'beat_kurtosis_mean', 
+    'RS_interval_ms_mean',  
+    # Spectral 
+    'QRS_band_power', 'P_wave_band_power',
+    'peak_frequency_Hz', 'spectral_flatness',  
+    # Poincaré
+    'SD1_ms', 'SD2_ms', 'SD1_SD2_ratio',
+    # Interval
+    'PR_interval_mean_ms', 'QT_interval_mean_ms',
+    'P_wave_presence_ratio', 'P_duration_mean_ms',
+    # R-peak
+    'R_peak_amplitude_mean', 'R_peak_count',
+]
+
+# Might need to include RP interval as input ML features for AVRT vs AVNRT detection    
+
+
+# Extract ML-ready feature vector for both channels
+ml_row_ch3 = {f'ch3_{k}': feats_ch3.get(k, np.nan) for k in ML_FEATURES}
+ml_row_ch4 = {f'ch4_{k}': feats_ch4.get(k, np.nan) for k in ML_FEATURES}
+ml_row     = {**ml_row_ch3, **ml_row_ch4}
+ 
+# Save as one-row DataFrame (one recording = one row) 
+df_ml = pd.DataFrame([ml_row]) 
+df_ml.to_excel('ECG_ML_features.xlsx', index=False)
+print(f"ML feature vector saved — {len(ml_row)} features total")
+
+
+
+
+
+

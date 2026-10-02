@@ -1,0 +1,38 @@
+ML_FEATURES = [
+    # Rhythm / HRV — all reliable, confirmed working
+    'RR_mean_ms',       # Strong: 281ms vs 305ms
+    'RR_std_ms',        # Both near-zero — confirms fixed circuit
+    'RMSSD_ms',         # Both near-zero — confirms regularity
+    'HR_mean_bpm',      # Strong: 213 vs 197 BPM
+    'HR_std_bpm',       # Near-zero both — stable rhythm
+    'pNN50_pct',        # Zero both — useful when comparing against AF/NSR later
+
+    # QRS Morphology — RS interval is your strongest feature
+    'QRS_amplitude_mean',       # Moderate
+    'QRS_duration_ms_mean',     # Both narrow — less useful for AVNRT/AVRT but
+                                # critical later for VT vs SVT
+    'beat_skewness_mean',       # Moderate
+    'beat_kurtosis_mean',       # Moderate: 6.01 vs 5.23
+    'RS_interval_ms_mean',      # STRONG: 45ms vs 75ms
+
+    # Spectral — QRS band power is strong
+    'QRS_band_power',       # STRONG: 0.080 vs 0.033
+    'P_wave_band_power',    # Similar both — less useful
+    'peak_frequency_Hz',    # Tracks HR — reliable
+    'spectral_flatness',    # Both near-zero — less useful for this pair
+ 
+    # Poincaré — moderate separation
+    'SD1_ms',           # Moderate: 0.47 vs 0.77
+    'SD2_ms',           # Similar — less useful
+    'SD1_SD2_ratio',    # Moderate: 0.93 vs 1.48
+
+    # Interval — only keep what is working
+    'PR_interval_mean_ms',      # Nearly identical — keep for future recordings
+    'QT_interval_mean_ms',      # Similar — keep for future
+    'P_wave_presence_ratio',    # Correct direction: 0.615 vs 0.760
+    'P_duration_mean_ms',       # Different: 83ms vs 73ms — moderate
+
+    # R-peak
+    'R_peak_amplitude_mean',    # Similar — less useful for this pair
+    'R_peak_count',             # Both ~25 — less useful
+]

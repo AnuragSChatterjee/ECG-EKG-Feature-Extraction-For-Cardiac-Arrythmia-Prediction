@@ -1,0 +1,39 @@
+now I would need your help to conduct a literature review for me to help me find some highly relevant and reliable papers which help to distinguish between AVNRT and AVRT within the super ventricular tachycardia i.e. SVT because AVNRT and AVRT are all a part or a subset of SVT if I am understanding this correctly. I did some research on AVNRT and AVRT and based on what I read and understood from my online research, I have found out that AVNRT uses a shorter electrical conduction pathway where the electrical signals uses a shorter pathway between the atrioventricular and sinoatrial node and the electrical signals take a much longer pathway than for AVRT where the electrical signals travel all the way to the outer rim or the edge of the atria walls and back before it makes a closed loop around the heart walls and septum if I am not mistaken. Based on what I read so far, the RP intervals should be shorter for AVNRT and RP intervals should be longer for AVRT because of this, and the P wave is somewhat retrograde right and subdued and merged up after the T wave is done but is not too visible as well. Am I understanding this essential difference correctly so that I can deep dive into the problem well first. 
+
+Hence, my task is as follows:
+
+Based on the fact that if a patient has active SVT, can we effectively differentiate on the type of SVT i.e. AVNRT and AVRT from the EKG/ECG signals which I have right now? I would need to create a machine learning model much later after I do the literature review on this first using the input features, and because this could be a potentially classification problem and not a regression problem, a supervised algorithm would be needed, so either a random forest (random forest classifier), logistic regression and XGBoost would work fine, based on what I understand. Check which papers use which techniques for the machine learning model so I can replicate a similar strategy accordingly? But I will code out the machine learning model from scratch later with your guidance, and first will need to do the literature review 
+
+Hence, for the feature list which I populated, I might need to include RP interval as input ML features for AVRT vs AVNRT detection right if I am correct on this? Based on my input feature list below, apart from RP interval, do I need to add or include any other features as input to the machine learning model for the task of predicting AVNRT and AVRT based on the fact if a patient has active super ventricular tachycardia i.e. SVT and from the ECG/EKG signals?  
+
+
+ML_FEATURES = [           
+    # Rhythm / HRV
+    'RR_mean_ms', 'RR_std_ms', 'RMSSD_ms',
+    'HR_mean_bpm', 'HR_std_bpm', 'pNN50_pct',
+    # QRS Morphology
+    'QRS_amplitude_mean', 'QRS_duration_ms_mean',
+    'beat_skewness_mean', 'beat_kurtosis_mean',
+    'RS_interval_ms_mean',
+    # Spectral 
+    'QRS_band_power', 'P_wave_band_power',
+    'peak_frequency_Hz', 'spectral_flatness',
+    # Poincaré
+    'SD1_ms', 'SD2_ms', 'SD1_SD2_ratio',
+    # Interval
+    'PR_interval_mean_ms', 'QT_interval_mean_ms',
+    'P_wave_presence_ratio', 'P_duration_mean_ms',
+    # R-peak
+    'R_peak_amplitude_mean', 'R_peak_count',
+]
+
+# Extract ML-ready feature vector for both channels
+ml_row_ch3 = {f'ch3_{k}': feats_ch3.get(k, np.nan) for k in ML_FEATURES}
+ml_row_ch4 = {f'ch4_{k}': feats_ch4.get(k, np.nan) for k in ML_FEATURES}
+ml_row     = {**ml_row_ch3, **ml_row_ch4}
+
+# Save as one-row DataFrame (one recording = one row)
+df_ml = pd.DataFrame([ml_row]) 
+df_ml.to_excel('ECG_ML_features.xlsx', index=False)
+print(f"ML feature vector saved — {len(ml_row)} features total")
+

@@ -76,6 +76,18 @@ reliable single hold-out split.
   <img src="results/figures/LR_confusion_matrix.png" width="34%">
 </p>
 
+### Additional experiments (see [results slides](reports/ECG_Feature_Extraction_Results_Slides.pdf))
+- **SVM** was added as a fourth model. It reached 82.6% LOO-CV and 86.1% 5-fold CV on the full 46-recording set.
+- **Clean subset (24 recordings)** kept only signals that passed the SNR > 0.5 check and visual
+  inspection. Here the simpler models did best: Logistic Regression and SVM scored 79–85%.
+- **SHAP** values were above 0.3 for half of the features, which supports the feature selection.
+- **Zero-crossing (ZC) extension:** the same ECG features were added to the lab's
+  electromechanical-wave-imaging zero-crossing dataset, to predict whether a strain-curve zero
+  crossing is correct. Five models were tested (LogReg, RF, XGBoost, CatBoost, LightGBM) with
+  patient-level 80/20 validation. CatBoost did best, with ROC-AUC 0.881 → 0.910 after adding
+  spatial features and **0.917 ROC-AUC / 0.733 F1** after spatial feature engineering. Spatial
+  features mattered more than the extra ECG features.
+
 ### Findings
 - **pNN50, heart-rate variability and QRS morphology** (skewness, kurtosis, duration)
   were the most discriminative features.
@@ -104,12 +116,32 @@ reliable single hold-out split.
 │   └── train_models.py        # LR / RF / XGBoost, GridSearchCV, LOO-CV, audit
 ├── scripts/
 │   └── make_synthetic_data.py # synthetic ECGs so the pipeline runs without patient data
+├── src/original/
+│   └── machine_learning_model_full.py  # original end-to-end research script (paths anonymised)
+├── reports/
+│   ├── ECG_Feature_Extraction_Results_Slides.pdf   # final results presentation
+│   ├── Week1_Progress_Report.pdf                   # methods, models and results write-up
+│   ├── Literature_Review_12_Lead_ECG_Arrhythmia_Prediction.pdf
+│   └── SVT_VT_ECG_Feature_Reference.docx           # 65-feature reference with paper links
+├── notes/                     # working notes: feature selection, paper analysis, AVNRT vs AVRT
 ├── docs/
 │   ├── feature_reference.md   # every feature + clinical rationale
 │   └── literature_review.md   # papers reviewed and baselines
 ├── results/figures/           # aggregate result plots
 └── data/README.md             # expected data format (no data included)
 ```
+
+## Reports
+
+| Document | What it covers |
+|---|---|
+| [Results slides](reports/ECG_Feature_Extraction_Results_Slides.pdf) | Pipeline, PQRST annotation example, model comparison, zero-crossing extension |
+| [Progress report](reports/Week1_Progress_Report.pdf) | Objective, dataset, features, signal processing, models, results, limitations |
+| [Literature review](reports/Literature_Review_12_Lead_ECG_Arrhythmia_Prediction.pdf) | 12-lead ECG arrhythmia papers and the feature families drawn from them |
+| [Feature reference](reports/SVT_VT_ECG_Feature_Reference.docx) | Prioritised 65-feature list for SVT/VT, with sources |
+
+`src/original/machine_learning_model_full.py` is the single script I used during the
+internship. The modules in `src/` are a cleaned-up, runnable version of the same pipeline.
 
 ## Quick start
 

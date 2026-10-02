@@ -1,0 +1,20 @@
+Important Features List:
+
+1. P-Wave Related Features - P Wave Duration And P Wave Amplitude (mean, std, variance)
+2. P-R Segment And P-R Interval
+3. QRS Complex Duration and pNN50	
+4. R Peak Amplitude, R Peak Duration, R Peak Time, R Peak Detection And R-R Interval (mean, std, min, max, IQ R, variance)
+5. T-Wave Related Features - T Wave Duration And T Wave Amplitude
+6. SDSD (standard deviation of successive R-R intervals) RMSSD (root mean square of successive R-R differences)
+7. Atrial And Ventricular Rate, Mean Heart Rate And STD Of Heart Rate (BPM)
+8. QRS related features - QRS Duration, QRS Amplitude And QRS Count
+9. QT/QTc Interval  
+10. ST Segment Slope  
+11. R-P Interval     
+12. P-Wave Presence/Absence   
+13. Ventriculoatrial Interval    
+14. QRS Alternans And Q-S Detection
+15. R-S Interval
+16. Poincare features - SD1, SD2, SD1/SD2 Ratio, Fractal Dimension (FD), Lyapunov Exponent (LE), Entropy
+17. Frequency domain features - QRS Band Power, P Wave Band Power, T Wave Band Power, Peak Frequency, Centroid Frequency, Total Spectral Energy, SFM, AMSA, QRS Complex Area, Skewness, Kurtosis, Q Onset, T Offset, Amplitude Range, R and T Axis
+18. Wavelet related features - DWT energy (Level 1 to Level 4)

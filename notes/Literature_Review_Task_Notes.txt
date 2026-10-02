@@ -1,0 +1,77 @@
+I would need to look into papers involving this topic:
+
+SVT ARRYTHMINA PREDICTION BASED ON ECG WITH MACHINE LEARNING AND OTHER PAPERS ON VENTRICULAR TACHYCARDIA 
+
+I would need to extract all the necessary and relevant features like last time, and need to research into all the useful, relevant and necessary features which convey the maximum information which can be extracted for the machine learning algorithm much later. For now, I would need to look into these papers as mentioned and look into which features they use. Can you please suggest to me some links to certain papers which have been highly and extremely successful at this task (SVT arrythmia, cardiac arrythmia, ventricular tachycardia etc) and look at all the features they used so that we can replicate a similar process like the paper?
+
+I have attached a PDF document of my previous task which I did based on my previous literature review, and here are some of the pointers that I took when I read the papers in that PDF so can take into consideration these points below alongside all the features under MY FINDINGS - FEATURES ASSESSMENT section of the PDF:
+
+(NO NEED) 1. used entire raw ecg signals as input 
+
+(NO NEED) 2. age, amiodarone, diuretics, sex, obesity, smoking etc 
+
+(DONE) 3. P-wave duration, PR interval, QRS duration, QT interval, and HRV metrics
+
+(FOR LATER) 4.  Used these features for dataset: first author’s last name, year and country of publication, study design, study period, total number of patients, total number of ECGs, number of ECGs with and without arrhythmias in the test set, percentage of male patients, mean age, classes of arrhythmias in the study, AI architecture, standard of reference for diagnosis, accuracy, F1 score, and data necessary to calculate sensitivity, specificity, and AUC. 
+
+(FOR LATER) 5. Standard Evaluation Metrics: Sensitivity, Specificity, AUC, F1 
+Score
+
+(NO NEED) 6. One paper extracted different dimensional features from one-dimensional and two-dimensional electrocardiogram time–frequency maps, and combines attention mechanism to effectively fuse the important features of 12-lead
+
+(NO NEED) 7. Extracted 13 features from the electrocardiogram signals using Gaussian Mixture Models and Wavelet features.
+
+(DONE) 8. Inferred that most of the researches working on automatic diagnosis of cardiac arrhythmias are based on modeling and analysis 
+of single modal features extracted from one-dimensional ECG sequences, ignoring the frequency domain features of ECG signals. 
+
+(DONE) 9. Used features such as one dimensional time series features and two dimensional frequency features from the ECG signals. 
+
+(DONE) 10. Different types of arrythmia classes were used such as:
+○ atrial fibrillation (AF) 
+○ atrial flutter (AFL) 
+○ sinus arrhythmia (SA) 
+○ sinus bradycardia (SB) 
+○ sinus tachycardia (STach) 
+○ normal sinus rhythm (NSR) 
+
+(DONE) 11. I saw that P-wave, QRS-complex, and T-wave were used for some papers and then explicitly computed ECG measurements as feature vectors, such as P-wave duration, PR interval, QRS duration, and ST slope.
+
+(DONE) 12. One paper used these features: QRS duration, QT interval, ventricular rate, atrial rate, R axis, T axis, Q onset, Q 
+offset, QRS count and T offset—in relation to an extended set of modern features derived from the time domain, frequency (spectral) 
+domain, and nonlinear analysis of the signal.
+
+13. Additional features which could be used from a paper: 
+(DONE) ● amplitude range—AR, 
+(DONE) ● peak-to-peak amplitude—PPA, 
+(DONE) ● mean amplitude—MA, 
+● median stepping increment—MSI, 
+● signal integral—SignInt, 
+(DONE) ● two variants of the root mean square (RMS) value, specific two 
+ventricular fibrillation signals (RMS1 and RMS2)  
+● mean slope—MS, 
+● median slope—MdS, 
+● a smoothed nonlinear energy operator—SNEO
+
+14. Additional features from a paper: 
+● amplitude spectrum area—AMSA, 
+● centroid frequency—CF, 
+● peak frequency—PF, 
+● total energy—ENRG, 
+(DONE) ● spectral flatness measure—SFM, 
+● centroid power—CP, 
+● maximum power—MP, 
+(DONE) ● power spectrum analysis—PSA.
+
+15. 
+● Hurst exponent (Hu) , 
+● scaling exponent—ScE, 
+● logarithm of absolute correlations—LAC , 
+(DONE) ● the median increment derived from the Poincaré plot (MSI)
+● entropy—WE, 
+● spectral entropy—SpeEnt.  
+
+(DONE) 16. One paper extracted these as features: This paper extracts features including R-wave amplitude, QRS complex depth, previous and subsequent RR intervals, power spectral density via Welch's method and discrete Fourier transform, and HRV signal features including sample entropy, Poincaré plot, and spectral features of high and low-frequency bands. 
+
+(DONE) 17. For one paper, after the segmenting the ECG signal, the duration, amplitude, variance and mean of P and R waves, average and standard deviation of RR intervals, QRS complex interval, average energy and power of samples as the morphological characteristic, PSD and DWT as the frequency features and fractal dimension (FD), Lyapunov exponent (LE), approximate, sample, fuzzy and permutation entropy and Poincare plot as the nonlinear indices are computed for the dataset signals.
+
+(DONE) 18. For another paper, the extracted features include heart rate variability features, PQRST shape templates, autoregressive model coefficients, change quantiles, aggregate linear least-squares regression trends, peak counts, sample/approximation entropy, energy, continuous waveform transform coefficients, fast Fourier transform coefficients, and other descriptive statistics.

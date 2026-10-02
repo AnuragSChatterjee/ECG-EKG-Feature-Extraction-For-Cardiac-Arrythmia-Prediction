@@ -1,0 +1,99 @@
+# Data Processing
+import os
+import math
+import pandas as pd
+import numpy as np 
+from sklearn import model_selection
+from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score, ConfusionMatrixDisplay
+from sklearn.model_selection import RandomizedSearchCV, train_test_split
+from scipy.stats import randint
+from sklearn.ensemble import RandomForestClassifier
+import matplotlib.pyplot as plt
+import warnings
+warnings.filterwarnings("ignore")
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.preprocessing import LabelEncoder
+
+# 1. Load data
+data = load_iris()
+X, y = data.data, data.target
+
+# Split the data into features (X) and target (y)
+X = bank_data.drop('y', axis=1)
+y = bank_data['y']
+
+# 2. Split into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+
+# 3. Initialize and train the model
+# n_estimators is the number of trees in the forest
+model = RandomForestClassifier(n_estimators=100, random_state=42, n_jobs = -1)
+model.fit(X_train, y_train)
+
+param_dist = {
+  'n_estimators': randint(100, 500),
+  'max_depth': randint(3, 15),
+  'min_samples_split': randint(2, 10),
+  'min_samples_leaf': randint(1, 5)
+}
+
+
+# Create a random forest classifier
+rf = RandomForestClassifier(random_state=42, n_jobs=-1)
+
+# Use random search to find the best hyperparameters
+rand_search = RandomizedSearchCV(
+  rf, param_distributions=param_dist,
+  n_iter=10, cv=5, scoring='accuracy',
+  n_jobs=-1, random_state=42) 
+
+# Create a random forest classifier
+rf = RandomForestClassifier(random_state=42, n_jobs=-1)
+
+# Use random search to find the best hyperparameters
+rand_search = RandomizedSearchCV(
+  rf, param_distributions=param_dist,
+  n_iter=10, cv=5, scoring='accuracy',
+  n_jobs=-1, random_state=42)
+
+
+# Create a variable for the best model
+best_rf = rand_search.best_estimator_
+
+# Print the best hyperparameters
+print('Best hyperparameters:',  rand_search.best_params_)
+
+
+# 4. Make predictions
+y_pred = model.predict(X_test)
+
+# Generate predictions with the best model
+y_pred = best_rf.predict(X_test)
+
+# Create the confusion matrix
+cm = confusion_matrix(y_test, y_pred)
+
+ConfusionMatrixDisplay(confusion_matrix=cm).plot();
+
+# 5. Evaluate
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
+print(f"Accuracy: {accuracy_score(y_test, y_pred):.2f}")
+
+
+y_pred = knn.predict(X_test)
+
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+
+print("Accuracy:", accuracy)
+print("Precision:", precision)
+print("Recall:", recall)
+
+mse = mean_squared_error(y_test, y_pred)
+print("Mean Squared Error:", mse)
+
+r2 = r2_score(y_test, y_pred)
+print("R-squared:", r2)
