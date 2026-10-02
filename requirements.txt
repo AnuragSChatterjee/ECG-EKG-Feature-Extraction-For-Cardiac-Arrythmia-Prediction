@@ -1,0 +1,9 @@
+numpy
+scipy
+pandas
+matplotlib
+openpyxl
+scikit-learn
+xgboost
+neurokit2
+PyWavelets

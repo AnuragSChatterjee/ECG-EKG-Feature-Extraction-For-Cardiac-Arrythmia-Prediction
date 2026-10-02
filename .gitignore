@@ -1,0 +1,19 @@
+# --- Patient data: never commit ---
+data/*
+!data/README.md
+data_synthetic/
+*.mat
+*.xlsx
+*.xls
+*.csv
+outputs/
+results/*.png
+!results/figures/
+
+# --- Python ---
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+.DS_Store
